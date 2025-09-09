@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Simulador financeiro</h1>
+<label>
+    <span>Quantos silos você tem ?</span> <br>
+    <input type="text" id="inp_silos">
+</label> <br>
+
+<label> 
+    <span>Qual a capacidade deles?</span> <br>
+    <input  placeholder="toneladas" type="text" id="inp_quantidade">
+</label> <br><br>
+
+
+
+<button onclick="sem()">Sem sustentaTech</button>
+<button onclick="com()">Com sustentaTech</button>
+
+<div id="msg"></div>
+</body>
+</html>
+
+<script>
+
+var preco_soja = 140;
+function sem() {
+        
+    var silo = Number(inp_silos.value);
+    var quantidade = Number(inp_quantidade.value);
+    
+
+    var total = silo * quantidade;
+    var perdaKG = total * 0.10; 
+    var novo_total =   quantidade  - perdaKG ; 
+    var faturamentoPerdido = novo_total * preco_soja;
+
+    msg.innerHTML +=`Atualmente sua perda é de ${perdaKG} toneladas gerando um faturamento de até R${faturamentoPerdido}. <br>`
+    
+}
+
+function com() {
+
+      
+    var silo = Number(inp_silos.value);
+    var quantidade = Number(inp_quantidade.value);
+    
+    var total = silo * quantidade;
+    var poupado = total * 0.10;
+    var preco = poupado * 140;
+    var faturamento = quantidade * preco_soja;
+
+
+    msg.innerHTML +=`Conosco será poupado ${poupado} toneladas, podendo ser faturado de até R$${faturamento}.<br>`
+
+
+}
+
+</script>
