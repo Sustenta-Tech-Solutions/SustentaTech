@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+
+</head>
+<body>
+
+    <h1 style="color: green;">Calculadora Financeira</h1> 
+
+    <h4>A capacidade média de armazenamento de um silo vertical é cerca de 3000 toneladas. <br>
+        A tendência da perda de soja desses silos é de 10%. <br>
+        O preço da saca de soja em 2025 está entre R$ 120,00 e R$ 145,00.
+    </h4> <br>
+    
+    Informe a capacidade exata do silo vertical (tonelada): <br>
+    <input type="number" id="inp_n1"> <br><br>
+
+    Informe a taxa percentual (%) exata de desperdício do silo: <br>
+    <input type="number" id="inp_n2"> <br><br>
+
+    Informe o preço exato por saca (60kg) de soja: <br>
+    <input type="number" id="inp_n3"> <br><br> <br>
+
+    <button onclick="calc()">Valor perdido em R$</button> <br><br>
+
+    <div id="divMsg"></div>
+    <div id="divMsg1" style="color: red; font-weight: bold;"></div>
+
+</body>
+</html>
+
+<script>
+
+    function calc() {
+        var capacidade = Number(inp_n1.value);
+        var pDesperdicio = Number(inp_n2.value);
+        var precoSaca = Number(inp_n3.value);
+        var tonelada = capacidade * 1000;
+        var qtdPerda = tonelada * (pDesperdicio / 100);
+        var perdaReais = (qtdPerda / 60) * precoSaca;
+
+        divMsg.innerHTML = `Com a capacidade de armazenamento do silo sendo de ${capacidade} toneladas,
+        <br> a taxa de desperdício de ${pDesperdicio}% (${qtdPerda / 1000} toneladas ou ${qtdPerda} kg), 
+        <br>e o preço por saca custando R$${precoSaca},<br>`; 
+        divMsg1.innerHTML = `o valor perdido do silo será de: R$${perdaReais}.`;
+    }
+
+</script>
