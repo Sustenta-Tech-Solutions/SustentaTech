@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sustenta Tech Solutions</title>
+</head>
+<body>
+    <h1>Sustenta Tech</h1>
+    <h2>Calculadora Financeira</h2>
+    <span>Peso total armazenado no silo: (em toneladas)</span>
+    <br>
+    <input type="text" id="ipt_pesoArmazenado" placeholder="20">
+    <br>
+    
+    <span>Preço da Saca:</span>
+    <br>
+    <input type="text" id="ipt_precoSaca" placeholder="140">
+    <br>
+    <br>
+    <button onclick="Calcular()">Calcular Perdas</button>
+    <br>
+    <div id="div_msg"></div>
+</body>
+</html>
+<script>
+    function Calcular(){
+        var pesoArmazenado = Number(ipt_pesoArmazenado.value);
+        var precoSaca = Number(ipt_precoSaca.value);
+        var percentualPerda = 0.1;
+
+        var pesoPerdido = pesoArmazenado * percentualPerda;
+        var sacasPerdidas = (pesoPerdido * 1000) / 60;
+        var valorPerdido = sacasPerdidas * precoSaca;
+        var faturamentoSemPerda = ((pesoArmazenado * 1000) / 60) * precoSaca;
+        var faturamentoComPerda = faturamentoSemPerda - valorPerdido;
+
+        div_msg.innerHTML = `<br>Sem a SustentaTech, o seu silo de ${pesoArmazenado} toneladas de grãos de soja está perdendo cerca de: <br ><br>
+        Peso Perdido: ${pesoPerdido.toFixed(3)}kg<br>
+        Sacas Perdidas: ${sacasPerdidas.toFixed(0)} sacas<br>
+        Faturamento COM Perdas: R$ ${faturamentoComPerda.toFixed(2)}
+        <br>
+        Faturamento SEM Perdas: R$ ${faturamentoSemPerda.toFixed(2)}
+        <br>
+        Valor Perdido: R$${valorPerdido.toFixed(2)}
+        `
+    }
+</script>
