@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Sustenta Tech</h1>
+    Armazenagem do Silo (toneladas) <br>
+    <input type="number" id="input_armazemDoSilo"> <br><br>
+    Quantidade de Silos <br>
+    <input type="number" id="input_qtSilos"><br><br>
+    Valor atual da Saca <br>
+    <input type="number" id="input_valor01"><br><br>
+    Valor esperado da Saca <br>
+    <input type="number" id="input_valor02"><br><br>
+    <button onclick="calcularDiferenca()">Mostra diferença</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+function calcularDiferenca() {
+    var armazenagem = (Number(input_armazemDoSilo.value) * 1000) / 60;
+    var silos = Number(input_qtSilos.value);
+    var primeiroValor = Number(input_valor01.value);
+    var segundoValor = Number(input_valor02.value);
+    var lucroPrimeiroValor = (armazenagem * silos) * primeiroValor;
+    var lucroSegundoValor = (armazenagem * silos) * segundoValor;
+    var valorTotal = lucroPrimeiroValor + lucroSegundoValor;  
+    var valorUnidade = valorTotal / 1000000;
+    if(primeiroValor < segundoValor) { 
+        if (valorTotal >= 1000000){
+            
+        div_mensagem.innerHTML = "Você terá um lucro extra de R$" + (valorUnidade) + "milhões ao armazenar até esse valor.";}
+        }
+        else {
+        div_mensagem.innerHTML = "Você terá um lucro extra de R$" + (lucroSegundoValor - lucroPrimeiroValor) + " ao armazenar até esse valor.";}
+    
+    if(primeiroValor > segundoValor){
+        if (valorTotal >= 1000000){
+        div_mensagem.innerHTML = "Você pode deixar de lucrar R$" + (valorUnidade) + "milhões.";}
+     else {div_mensagem.innerHTML = "Você pode deixar de lucrar R$" + (lucroPrimeiroValor - lucroSegundoValor) + ".";}
+    }if(primeiroValor == segundoValor){ 
+        div_mensagem.innerHTML = "Não haverá diferença no lucro, pois o preço se manteve igual."
+    }
+}
+    
+</script>
