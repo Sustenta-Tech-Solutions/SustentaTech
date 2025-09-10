@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora</title>
+</head>
+<body>
+
+    <h1>SustentaTech</h1>
+    <h2>Calculadora de perdas e ganhos</h2>
+    <label for="capacidade">Capacidade do Silo (em toneladas)</label> <br>
+    <input type="number" id="capacidade" placeholder="Insira..."> <br>
+    <label for="preco_safra">Preço da Tonelada de Soja na Safra (R$)</label> <br>
+    <input type="number" id="preco_safra" placeholder="Insira.."> <br>
+    <label for="preco_entressafra">Preço da Tonelada de Soja na Entressafra (R$)</label> <br>
+    <input type="number" id="preco_entressafra" placeholder="Insira.."> <br>
+    <label for="percentual_perda">Percentual Estimado de Perda por umidade (%)</label> <br>
+    <input type="number" id="percentual_perda" placeholder="Insira.."> <br> <br>
+    <button onclick="calcular()">Calcular Ganhos e Perdas</button> <br>
+    <div id="mensagem"></div>
+
+</body>
+</html>
+<script>
+
+   function calcular(){
+    
+   var varCapacidade = Number(capacidade.value)
+   var varPrecoSafra = Number(preco_safra.value)
+   var varPrecoEntressafra = Number(preco_entressafra.value)
+   var varPercentualPerda = Number(percentual_perda.value)
+
+   var safraTonelada = varCapacidade * varPrecoSafra
+   var entressafraTonelada = varCapacidade * varPrecoEntressafra 
+
+   var safraTotal = safraTonelada + entressafraTonelada 
+   var prejuizo = (safraTotal * varPercentualPerda) / 100
+   
+
+   {mensagem.innerHTML += `<br> Com uma perda de ${varPercentualPerda}%, o prejuízo estimado é de R$${prejuizo}. <br>O ganho potencial na safra é de R$${safraTonelada} <br> e da entressafra é R$${entressafraTonelada} <br> com o total sendo R$${safraTotal}. <br>`
+   }
+}
+
+</script>
