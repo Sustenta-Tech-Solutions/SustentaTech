@@ -10,7 +10,7 @@
     <h1>Sustenta Tech</h1>
     <h2 style="color: #956E00;">Calculadora Financeira</h2> 
 
-    <h4>A capacidade média de armazenamento de um silo vertical é cerca de 3000 toneladas. <br>
+    <h4>A capacidade média de armazenamento de um silo vertical é cerca de 6000 toneladas. <br>
         A tendência da perda de soja desses silos é de 10%. <br>
         O preço da saca de soja em 2025 está entre R$ 120,00 e R$ 145,00.
     </h4> <br>
@@ -28,8 +28,8 @@
 
     <button onclick="calc()">Calcular ganhos e perdas</button> <br> <br>
 
-    <div id="div_msg" style="color: green;"></div>
-    <div id="div_msg2" style="color: red;"></div>
+    <div id="div_msg" style="color: red;"></div>
+    <div id="div_msg2" style="color: green;"></div>
 
 </body>
 </html>
@@ -47,29 +47,19 @@
         var faturamentoSemPerda = ((pesoArmazenado * 1000) / 60) * precoSaca;
         var faturamentoComPerda = faturamentoSemPerda - valorPerdido;
 
-        var pesoArmazenado = Number(ipt_pesoArmazenado.value);
-        var precoSaca = Number(ipt_precoSaca.value);
-        var percentualPerda = 0.1;
-
-        var pesoPerdido = pesoArmazenado * percentualPerda;
-        var sacasPerdidas = (pesoPerdido * 1000) / 60;
-        var valorPerdido = sacasPerdidas * precoSaca;
-        var faturamentoSemPerda = ((pesoArmazenado * 1000) / 60) * precoSaca;
-        var faturamentoComPerda = faturamentoSemPerda - valorPerdido;
-
-        div_msg.innerHTML = `<br>
-        Com a Sustenta Tech, aumente seu faturamento em até: R$ ${faturamentoSemPerda.toFixed(2)}
-        <br>
-        Potencial de Ganho: R$ ${valorPerdido.toFixed(2)}
-        `;
-
-        div_msg2.innerHTML = `<br>Sem a SustentaTech, o seu silo de ${pesoArmazenado} toneladas de grãos de soja está perdendo cerca de:<br>
+        div_msg.innerHTML = `<br>Sem a SustentaTech, o seu silo de ${pesoArmazenado} toneladas de grãos de soja está perdendo cerca de:<br>
         Peso Perdido: ${pesoPerdido.toFixed(3)}kg<br>
         Sacas Perdidas: ${sacasPerdidas.toFixed(0)} sacas<br>
-        Faturamento SEM a Sustenta Tech: ${faturamentoComPerda.toFixed(2)}
+        Faturamento SEM a Sustenta Tech: ${faturamentoComPerda.toLocaleString("pt-BR", {style:"currency",currency:"BRL"})  }
         <br>
-        Valor Perdido: R$${valorPerdido.toFixed(2)}
+        Valor Perdido: ${valorPerdido.toLocaleString ("pt-BR", {style:"currency", currency:"BRL"} )}
         `;
+
+        div_msg2.innerHTML = `<br>
+        Com a Sustenta Tech, seu faturamento pode chegar em até ${faturamentoSemPerda.toLocaleString("pt-BR", {style:"currency", currency:"BRL"})}
+        <br>
+        Potencial de Ganho: ${valorPerdido.toLocaleString("pt-BR", {style:"currency", currency:"BRL"})}
+        `;  
     }
 
 </script>
