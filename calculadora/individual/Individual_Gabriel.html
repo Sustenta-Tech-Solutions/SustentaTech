@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Document</title>
+</head>
+
+<body>
+  <h1 style="color: gold;">Calculadora Financeira – Silos de Soja</h1>
+
+  <label>
+    <span>Capacidade do Silo (toneladas):</span><br />
+    <input type="number" id="ipt_toneladas" placeholder="Ex: 3000" /> </label><br /><br />
+
+  <label>
+    <span>Valor da Saca de Soja (R$):</span><br />
+    <input type="number" id="valor_saca" placeholder="Ex: 140" /> </label><br /><br />
+
+  <label>
+    <span>Perda sem Monitoramento (%): </span><br />
+    <input type="number" id="perda_sem" placeholder="Ex: 10" /> </label><br /><br />
+
+  <label>
+    <span>Perda com Monitoramento (%):</span><br />
+    <input type="number" id="perda_com" placeholder="Ex: 2" /> </label><br /><br />
+
+  <button onclick="calcular()">Calcular</button>
+
+  <div id="div_mensagem"></div>
+</body>
+
+</html>
+<script>
+  /*Para representar sacas em toneladas, converta o peso de cada saca para quilogramas (kg), some o peso total em kg e, em seguida, divida por 1000 (já que 1 tonelada = 1000 kg), Por exemplo, 1 tonelada equivale a aproximadamente 16,67 sacos de 60 kg
+  Calcule o peso de uma saca: Conheça o peso de uma única saca. No Brasil, o peso padrão para sacos de grãos como soja, milho e trigo é de 60 kg.
+Calcule o peso total: Multiplique o peso de uma saca pelo número de sacas que você tem para encontrar o peso total em quilogramas (kg).
+Converta para toneladas: Divida o peso total em quilogramas por 1000 para obter o valor em toneladas. 
+Exemplo prático:
+Uma saca tem 60 kg.
+Você tem 20 sacas. O peso total é 20 sacas * 60 kg/saca = 1200 kg.
+1200 kg / 1000 kg/tonelada = 1,2 toneladas. 
+Notação de toneladas:
+Use um "t" minúsculo para tonelada métrica (1000 kg).
+Use um "T" maiúsculo para tonelada imperial (ou tonelada curta), que é diferente da métrica. 
+Exemplos de uso:
+Uma tonelada de milho equivale a 16,67 sacas de 60 kg.
+Se você tem 2500 kg de produto, pode representá-lo como 2,5 toneladas. 
+*/
+  function calcular() {
+    var toneladas = Number(ipt_toneladas.value);
+    var valorSaca = Number(valor_saca.value);
+    var perdaSem = Number(perda_sem.value);
+    var perdaCom = Number(perda_com.value);
+
+    var sacasPorTonelada = 16.67;
+    var sacas = toneladas * sacasPorTonelada;
+    var valorTotal = sacas * valorSaca;
+
+    var perdaValorSem = valorTotal * (perdaSem / 100);
+    var perdaValorCom = valorTotal * (perdaCom / 100);
+    var economia = perdaValorSem - perdaValorCom;
+    div_mensagem.innerHTML = ` 
+        <h2 style="color: green;">Resultados:</h2>
+        <p><strong>Valor total dos grãos:</strong> R$ ${valorTotal.toFixed(2)}</p>
+        <p><strong>Perda sem monitoramento:</strong> R$ ${perdaValorSem.toFixed(2)}</p>
+        <p><strong>Perda com monitoramento:</strong> R$ ${perdaValorCom.toFixed(2)}</p>
+        <p><strong>Economia estimada:</strong> R$ ${economia.toFixed(2)}</p>`;
+  }
+</script>
