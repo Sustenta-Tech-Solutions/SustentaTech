@@ -19,7 +19,7 @@ cnpj CHAR(14),
 localidade VARCHAR(50)
 );
 
-INSERT INTO empresa (nomeEmpresa, responsavelLegal, cnpj, lacalidade) VALUES
+INSERT INTO empresa (nomeEmpresa, responsavelLegal, cnpj, localidade) VALUES
 	('SPTECH', 'Vera Goulart', '12334500016789', 'São Paulo'),
 	('Fazenda Do Juares', 'Juares Pereira', '9876000154331', 'Rio Grande do Sul'),
 	('Imporio Do Maia', 'Carlos Maia', '12345678000190', 'Mato Grosso'),
@@ -42,11 +42,13 @@ telefone VARCHAR(20)
 );
 
 INSERT INTO usuario (email, userName, senha, cargo, telefone) VALUES
-	('vera.goular@sptech.school', 'Vera', '123456@cld', 'Gerente de Operações', '(11) 95765-4365'),
-	('jorge.emanuel@gmail.com', 'Jorge', 'Urubu100@', 'Agronomo', '(51) 95781-3654'),
-	('rodrigo.oliveira@gmail.com', 'Rodrigo', 'Filho@2', 'Administrador', '(65) 97012-3764'),
-	('gabriel.jesus@gmail.com', 'Gabriel', 'Chocolate33.', 'Proprietario', '(71) 92560-9785'),
+	('vera.goular@sptech.school', 'Vera', '123456@cld', 'Gerente', '(11) 95765-4365'),
+	('jorge.emanuel@gmail.com', 'Jorge', 'Urubu100@', 'Agricultor', '(51) 95781-3654'),
+	('rodrigo.oliveira@gmail.com', 'Rodrigo', 'Filho@2', 'Gerente', '(65) 97012-3764'),
+	('gabriel.jesus@gmail.com', 'Gabriel', 'Chocolate33.', 'Gerente', '(71) 92560-9785'),
 	('andre.goueva@gmail.com', 'André', 'Paodequijo@7', 'Agricultor', '(34) 96542-7889');
+
+
 
 SELECT
 userName,
@@ -111,7 +113,7 @@ select umidade as Umidade,
 
     select nomeEmpresa as 'Empresa',
 	cnpj as 'CPNJ'
-    from Empresa;
+    from empresa;
     
 -- Exemplo 2    
 SELECT
