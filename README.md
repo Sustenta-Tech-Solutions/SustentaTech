@@ -1,1 +1,1 @@
-# SustentaTech
+# SustentaTech, repositorio destinado para documentações e arquivos gerais do projeto
